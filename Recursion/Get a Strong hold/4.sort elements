@@ -1,0 +1,36 @@
+public void pushBack(Stack<Integer> s, int ele)
+    {
+        if(s.isEmpty())
+        {
+            s.push(ele);
+            return;
+        }
+        int topElement = s.peek();
+        if(topElement > ele)
+        {
+            s.pop();
+            pushBack(s,ele);
+            s.push(topElement);
+        }
+        else
+            s.push(ele);
+        
+    }
+    public void sortStack(Stack<Integer> s)
+    {
+        if(s.isEmpty())
+        {
+            return ;
+        }
+        int top = s.pop();
+        sortStack(s);
+        pushBack(s,top);
+        
+    }
+	public Stack<Integer> sort(Stack<Integer> s)
+	{
+		//add code here.
+		//Stack<Integer> ans = new Stack<Integer>();
+		sortStack(s);
+		return s;
+	}
