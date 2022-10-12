@@ -1,0 +1,30 @@
+public static void generateString(int idx,int n,String str,ArrayList<String> ans)
+    {
+        if(idx == n)
+        {
+            ans.add(str);
+            return;
+        }
+        if(str.charAt(idx-1) == '0')
+        {
+            
+            generateString(idx+1,n,str+"0",ans);
+            generateString(idx+1,n,str+"1",ans);
+        }
+        else
+        {
+            generateString(idx+1,n,str+"0",ans);
+        }
+    }
+	public static void main(String[] args) 
+	{
+		int k =4;
+		ArrayList<String> ans = new ArrayList<String>();
+		String str = "0";
+		generateString(1,k,str,ans);
+		 str = "1";
+		generateString(1,k,str,ans);
+		for(String i:ans)
+		    System.out.println(i);
+		
+	}
