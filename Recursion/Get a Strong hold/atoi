@@ -1,0 +1,31 @@
+public int solve(String str,int idx, int n,int ans)
+    {
+        if(ans<=-1)
+            return -1;
+        if(idx == n)
+            return ans;
+        if(!(str.charAt(idx)>='0' && str.charAt(idx)<='9'))
+            return -1;
+        
+        return solve(str,idx+1,n,ans*10+(str.charAt(idx)-'0'));
+    }
+    int atoi(String str) 
+    {
+	    // Your code here
+	    int sign = 1;
+	    if(str.charAt(0) == '+')
+	        str = str.substring(1,str.length());
+	    else if(str.charAt(0) == '-')
+	    {
+	        str = str.substring(1,str.length());
+	        sign = -1;
+	    }
+	    else if(!(str.charAt(0)>='0' && str.charAt(0)<='9'))
+	        return -1;
+	    int n = str.length();
+	    int ans =0 ;
+	    int op = solve(str,0,n,ans);
+	    if(op <= -1)
+	        return -1;
+	    return sign*op;
+    }
