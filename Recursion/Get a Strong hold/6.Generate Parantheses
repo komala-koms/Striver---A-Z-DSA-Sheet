@@ -1,0 +1,22 @@
+public void create(int open,int close,String str,List<String> ans)
+    {
+        if(open ==0 && close ==0)
+        {
+            ans.add(str);
+            return;
+        }
+        if(open>0)
+        {
+            create(open-1,close,str+"(",ans);
+        }
+        if(open<close)
+            create(open,close-1,str+")",ans);
+    }
+    public List<String> AllParenthesis(int n) 
+    {
+        // Write your code here
+        String str="";
+        List<String> ans = new ArrayList<String>();
+        create(n,n,str,ans);
+        return ans;
+    }
