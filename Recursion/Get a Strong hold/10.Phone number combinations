@@ -1,0 +1,28 @@
+public  Map<Character,String> digitsToChar = Map.of(
+            '2', "abc", '3', "def", '4', "ghi", '5', "jkl",
+            '6', "mno", '7', "pqrs", '8', "tuv", '9', "wxyz");
+    
+    public  List<String> ans = new ArrayList<>();
+    public  void combinations(int idx,String sb,String digits)
+    {
+        if(sb.length() >= digits.length())
+        {
+            ans.add(sb);
+            return;
+        }
+        String letters = digitsToChar.get(digits.charAt(idx));
+        for(char c:letters.toCharArray())
+        {
+            combinations(idx+1,sb +String.valueOf(c),digits);
+            //sb.deleteCharAt(sb.length()-1);
+        }
+        
+    }
+    
+    public List<String> letterCombinations(String digits) {
+        int n = digits.length();
+        String sb = "";
+        if(n>0)
+            combinations(0,sb,digits);
+        return ans;
+    }
