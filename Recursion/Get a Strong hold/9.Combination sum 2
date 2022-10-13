@@ -1,0 +1,28 @@
+public void solve(int idx, int n, int[] candidates, int target, 
+    ArrayList<Integer> ds,HashSet<ArrayList<Integer>> ans)
+    {
+        if(target == 0)
+        {
+            ans.add(new ArrayList<Integer>(ds));
+            return;
+        }
+        if(idx>=n)
+            return;
+        if( target-candidates[idx]>=0)
+        {
+            ds.add(candidates[idx]);
+            solve(idx+1,n,candidates,target-candidates[idx],ds,ans);
+            ds.remove(ds.size()-1);
+        }
+        solve(idx+1,n,candidates,target,ds,ans);
+    }
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) 
+    {
+        HashSet<ArrayList<Integer>> ans =new HashSet<ArrayList<Integer>>();
+        Arrays.sort(candidates);
+        int n = candidates.length;
+        ArrayList<Integer> ds = new ArrayList<Integer>();
+        solve(0,n,candidates,target,ds,ans);
+        List<List<Integer>> op = new ArrayList<List<Integer>>(ans);
+        return op;
+    }
