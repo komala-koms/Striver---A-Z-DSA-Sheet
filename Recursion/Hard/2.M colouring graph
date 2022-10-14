@@ -1,0 +1,35 @@
+public boolean isColourable(int node,boolean[][] graph,int m,int n,int c,int[] colour)
+    {
+        for(int i=0;i<n;i++)
+        {
+            if(node!=i && graph[node][i] && colour[i]==c)
+                return false;
+        }
+        return true;
+        
+    }
+    
+    public boolean recursive(int node,boolean[][] graph,int m,int n,int[] colour)
+    {
+        if(node == n)
+            return true;
+        for(int i=1;i<=m;i++)
+        {
+            if(isColourable(node,graph,m,n,i,colour))
+            {
+                colour[node]=i;
+                if(recursive(node+1,graph,m,n,colour))
+                    return true;
+                colour[node]=0;
+            }
+        }
+        return false;
+    }
+    public boolean graphColoring(boolean graph[][], int m, int n) {
+        // Your code here
+        int colour[] = new int [n];
+        if(recursive(0,graph,m,n,colour))
+            return true;
+        else
+            return false;
+    }
